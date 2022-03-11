@@ -17,3 +17,6 @@ Use the mosquitto_flow_NodeRED.json to create a flow in NodeRED with publisher/s
 * run docker-compose up -d
 * on a different terminal run ```mosquitto_sub --cafile cert/ca.crt -h 192.168.1.109 -t "#" -p 8883 -d --cert client_cert/client.crt --key client_cert/client.key -u admin -P admin``` to subscribe to any topic
 * on a different terminal run ```mosquitto_pub -h 192.168.1.109 -t "my/topic" -m "message" -p 8883 -d --cert client_cert/client.crt --key client_cert/client.key --cafile cert/ca.crt -u admin -P admin``` to publish on the my/topic
+
+## references
+* [Tutorial]https://medium.com/himinds/mqtt-broker-with-secure-tls-communication-on-ubuntu-18-04-lts-and-an-esp32-mqtt-client-5c25fd7afe67
