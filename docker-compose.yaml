@@ -5,6 +5,7 @@
     - "./config:/mosquitto/config"
     - "./log:/mosquitto/log"
     - "./data:/mosquitto/data"
+    - "./cert:/mosquitto/cert"
     restart: always
     ports:
-    - "1883:1883" 
+    - "8883:8883" 
