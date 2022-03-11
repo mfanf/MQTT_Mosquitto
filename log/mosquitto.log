@@ -1,0 +1,9 @@
+1647000646: mosquitto version 2.0.14 starting
+1647000646: Config loaded from /mosquitto/config/mosquitto.conf.
+1647000646: Opening ipv4 listen socket on port 8883.
+1647000646: Opening ipv6 listen socket on port 8883.
+1647000646: mosquitto version 2.0.14 running
+1647000648: New connection from 172.17.0.1:50862 on port 8883.
+1647000648: New client connected from 172.17.0.1:50862 as mqtt_fe4fa4be.71d088 (p2, c1, k60, u'admin').
+1647000657: mosquitto version 2.0.14 terminating
+1647000657: Saving in-memory database to /mosquitto/data/mosquitto.db.
