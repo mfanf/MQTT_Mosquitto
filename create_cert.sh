@@ -22,13 +22,6 @@ function generate_client () {
    openssl x509 -req -sha256 -in client_cert/client.csr -CA cert/ca.crt -CAkey cert/ca.key -CAcreateserial -out client_cert/client.crt -days 365
 }
 
-function copy_keys_to_broker () {
-   sudo cp ca.crt /etc/mosquitto/certs/
-   sudo cp server.crt /etc/mosquitto/certs/
-   sudo cp server.key /etc/mosquitto/certs/
-}
-
 generate_CA
 generate_server
 generate_client
-# copy_keys_to_broker
