@@ -1,0 +1,11 @@
+log/mosquitto.log
+data/mosquitto.db
+cert/ca.crt
+cert/ca.key
+cert/ca.srl
+cert/server.crt
+cert/server.csr
+cert/server.key
+client_cert/client.crt
+client_cert/client.csr
+client_cert/client.key
