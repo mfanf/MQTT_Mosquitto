@@ -24,8 +24,8 @@ Use the mosquitto_flow_NodeRED.json to create a flow in NodeRED with publisher/s
 * the included flow is presented as an example on how to handle the authenticated/encrypted MQTT broker on NodeRED
 
 ## Note:
-* the ```.env``` file is used to avoid change of ownership of files when running the docker-compose. UID and GID are set to 1000, the default user for Ubuntu.
-![flow](imgs/MQTT_NodeRED.png)
+* the ```.env``` file is used to avoid change of ownership of files when running the docker-compose. UID and GID are set to 1000, the default user for Ubuntu.   
+![flow](./imgs/MQTT_noreRED.png)
 
 ## references
 * [Mosquitto MQTT tutorial](https://medium.com/himinds/mqtt-broker-with-secure-tls-communication-on-ubuntu-18-04-lts-and-an-esp32-mqtt-client-5c25fd7afe67)
