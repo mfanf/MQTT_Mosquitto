@@ -1,6 +1,7 @@
   mosquitto:
     container_name: mosquitto
     image: eclipse-mosquitto
+    user: "${UID}:${GID}"
     volumes:
     - "./config:/mosquitto/config"
     - "./log:/mosquitto/log"
