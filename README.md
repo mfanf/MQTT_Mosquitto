@@ -1,4 +1,4 @@
-# Mosquitto MQTT broker
+# Authenticated/Encrypted Mosquitto MQTT broker with Docker and NodeRED
 
 Docker-compose to run an authenticated/encrypted [Mosquitto](https://mosquitto.org/) MQTT broker.
 
@@ -19,6 +19,9 @@ Use the mosquitto_flow_NodeRED.json to create a flow in NodeRED with publisher/s
 * run ```docker-compose up```
 * on a different terminal run ```mosquitto_sub --cafile cert/ca.crt -h 192.168.1.109 -t "#" -p 8883 -d --cert client_cert/client.crt --key client_cert/client.key -u admin -P admin``` to subscribe to any topic
 * on a different terminal run ```mosquitto_pub -h 192.168.1.109 -t "my/topic" -m "message" -p 8883 -d --cert client_cert/client.crt --key client_cert/client.key --cafile cert/ca.crt -u admin -P admin``` to publish on the my/topic
+
+## NodeRED
+* the included flow is presented as an example on how to handle the authenticated/encrypted MQTT broker on NodeRED
 
 ## Note:
 * the ```.env``` file is used to avoid change of ownership of files when running the docker-compose. UID and GID are set to 1000, the default user for Ubuntu.
