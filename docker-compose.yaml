@@ -9,4 +9,6 @@
     - "./cert:/mosquitto/cert"
     restart: always
     ports:
+    - "1883:1883"
     - "8883:8883" 
+    - "9001:9001"

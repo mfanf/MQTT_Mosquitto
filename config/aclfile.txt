@@ -1,0 +1,14 @@
+# General section (if no username is provided)
+topic readwrite open/#
+
+# User specific topics
+user roger
+topic read private1/#
+topic readwrite open/#
+
+user anna
+topic read private2/#
+topic readwrite open/#
+
+user admin
+topic readwrite #
