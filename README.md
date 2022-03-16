@@ -4,9 +4,9 @@ Docker-compose to run an authenticated/encrypted [Mosquitto](https://mosquitto.o
 
 ## Authenticated
 * in ```conf/mosquitto.conf```
-** set ```require_certificate false``` 
-** set ```listener 1883```
-** comment or remove ```cafile /mosquitto/cert/ca.crt```, ```certfile /mosquitto/cert/server.crt```, and ```keyfile /mosquitto/cert/server.key```
+  * set ```require_certificate false``` 
+  * set ```listener 1883```
+  * comment or remove ```cafile /mosquitto/cert/ca.crt```, ```certfile /mosquitto/cert/server.crt```, and ```keyfile /mosquitto/cert/server.key```
 * run ```docker-compose up```
 * on a different terminal run ```mosquitto_sub -h localhost -p 1883 -t "#" -u admin -P admin``` to subscribe to any topic
 * on a different terminal run ```mosquitto_pub -h localhost -p 1883 -t my/topic -m "message" -u admin -P admin``` to publish on the my/topic
@@ -17,9 +17,9 @@ Use the mosquitto_flow_NodeRED.json to create a flow in NodeRED with publisher/s
 
 ## TSL encryption
 * in ```conf/mosquitto.conf```
-** set ```require_certificate true``` 
-** set ```listener 8883```
-** uncomment or add ```cafile /mosquitto/cert/ca.crt```, ```certfile /mosquitto/cert/server.crt```, and ```keyfile /mosquitto/cert/server.key```
+  * set ```require_certificate true``` 
+  * set ```listener 8883```
+  * uncomment or add ```cafile /mosquitto/cert/ca.crt```, ```certfile /mosquitto/cert/server.crt```, and ```keyfile /mosquitto/cert/server.key```
 * run ```create_cert.sh``` to create keys and certificates for server and client
 * run ```docker-compose up```
 * on a different terminal run ```mosquitto_sub  -h 192.168.1.109 -t "#" -p 8883 -d --cert client_cert/admin.crt --key client_cert/admin.key --cafile cert/ca.crt -u admin -P admin``` to subscribe to any topic
@@ -29,7 +29,7 @@ Use the mosquitto_flow_NodeRED.json to create a flow in NodeRED with publisher/s
 Three test user are used for testig: Anna (```anna|pass```), Roger (```roger|pass```), Admin (```admin|admin```). Admin can read/write all the topics. Roger can read the ```private1``` topic, while Anna can read the ```private2``` topic. Both Anna and Roger can read/write the ```open``` topic.
  
 * in ```conf/mosquitto.conf```
-** set ```acl_file /mosquitto/config/aclfile.txt``` where aclfile is the file with specific rules to implement the controll access as given above. 
+  * set ```acl_file /mosquitto/config/aclfile.txt``` where aclfile is the file with specific rules to implement the controll access as given above. 
 * run ```mosquitto_sub  -h 192.168.1.109 -t "#" -p 8883 -d --cert client_cert/admin.crt --key client_cert/admin.key --cafile cert/ca.crt -u admin -P admin``` for the Admin
 * run ```mosquitto_sub  -h 192.168.1.109 -t "#" -p 8883 -d --cert client_cert/anna.crt --key client_cert/anna.key --cafile cert/ca.crt -u anna -P pass``` for Anna
 * run ```mosquitto_sub  -h 192.168.1.109 -t "#" -p 8883 -d --cert client_cert/roger.crt --key client_cert/roger.key --cafile cert/ca.crt -u roger -P pass``` for Roger
