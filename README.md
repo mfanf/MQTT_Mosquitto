@@ -38,11 +38,11 @@ Three test user are used for testig: Anna (```anna|pass```), Roger (```roger|pas
 * run ```mosquitto_pub -h 192.168.1.109 -t "private1/test" -m "private message(#1) from Roger" -p 8883 -d --cert client_cert/roger.crt --key client_cert/roger.key --cafile cert/ca.crt -u roger -P pass```. Nobody will receive this message, since Roger has no write priviledge on private1 topic.
 
 ## NodeRED
-* the included flow is presented as an example on how to handle the authenticated/encrypted MQTT broker on NodeRED
+* the included flow is presented as an example on how to handle the authenticated/encrypted MQTT broker on NodeRED   
+![flow](./imgs/MQTT_noreRED.png)
 
 ## Note:
 * the ```.env``` file is used to avoid change of ownership of files when running the docker-compose. UID and GID are set to 1000, the default user for Ubuntu.   
-![flow](./imgs/MQTT_noreRED.png)
 
 ## References
 * [Mosquitto MQTT tutorial](https://medium.com/himinds/mqtt-broker-with-secure-tls-communication-on-ubuntu-18-04-lts-and-an-esp32-mqtt-client-5c25fd7afe67)
