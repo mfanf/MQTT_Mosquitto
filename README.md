@@ -50,3 +50,4 @@ Three test user are used for testig: Anna (```anna|pass```), Roger (```roger|pas
 
 ## References
 * [Mosquitto MQTT tutorial](https://medium.com/himinds/mqtt-broker-with-secure-tls-communication-on-ubuntu-18-04-lts-and-an-esp32-mqtt-client-5c25fd7afe67)
+* [Mosquitto ACL tutorial](http://www.steves-internet-guide.com/topic-restriction-mosquitto-configuration/)
