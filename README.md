@@ -25,6 +25,10 @@ Use the mosquitto_flow_NodeRED.json to create a flow in NodeRED with publisher/s
 * on a different terminal run ```mosquitto_sub  -h 192.168.1.109 -t "#" -p 8883 -d --cert client_cert/admin.crt --key client_cert/admin.key --cafile cert/ca.crt -u admin -P admin``` to subscribe to any topic
 * on a different terminal run ```mosquitto_pub -h 192.168.1.109 -t "my/topic" -m "message" -p 8883 -d --cert client_cert/client.crt --key client_cert/client.key --cafile cert/ca.crt -u admin -P admin``` to publish on the my/topic
 
+### NodeRED
+* the flow ```mosquitto_flow_nodeRED.json``` is presented as an example on how to handle the authenticated/encrypted MQTT broker on NodeRED   
+![flow](./imgs/MQTT_noreRED.png)
+
 ## ACL (Access control list)
 Three test user are used for testig: Anna (```anna|pass```), Roger (```roger|pass```), Admin (```admin|admin```). Admin can read/write all the topics. Roger can read the ```private1``` topic, while Anna can read the ```private2``` topic. Both Anna and Roger can read/write the ```open``` topic.
  
@@ -37,9 +41,9 @@ Three test user are used for testig: Anna (```anna|pass```), Roger (```roger|pas
 * run ```mosquitto_pub -h 192.168.1.109 -t "private1/test" -m "private message(#1) from Admin" -p 8883 -d --cert client_cert/admin.crt --key client_cert/admin.key --cafile cert/ca.crt -u admin -P admin``` to publish on the private1/test topic. Only Roger and Admin will receive the message. Similarly, messages sent to private2/# will only be read by Anna and Admin (not by Roger).
 * run ```mosquitto_pub -h 192.168.1.109 -t "private1/test" -m "private message(#1) from Roger" -p 8883 -d --cert client_cert/roger.crt --key client_cert/roger.key --cafile cert/ca.crt -u roger -P pass```. Nobody will receive this message, since Roger has no write priviledge on private1 topic.
 
-## NodeRED
-* the included flow is presented as an example on how to handle the authenticated/encrypted MQTT broker on NodeRED   
-![flow](./imgs/MQTT_noreRED.png)
+### NodeRED
+* the flow ```mosquitto_flow_nodeRED_with_ACL.json``` is presented as an example on how to handle the authenticated/encrypted MQTT broker using access control list on NodeRED   
+![flow](./imgs/MQTT_noreRED_ACL.png)
 
 ## Note:
 * the ```.env``` file is used to avoid change of ownership of files when running the docker-compose. UID and GID are set to 1000, the default user for Ubuntu.   
