@@ -1,0 +1,669 @@
+[
+    {
+        "id": "1c1d854c.09bd93",
+        "type": "mqtt in",
+        "z": "ac6cf50f.41bcf",
+        "name": "AdminNOTLS_Read",
+        "topic": "#",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "a7f9efab.08a17",
+        "x": 210,
+        "y": 120,
+        "wires": [
+            [
+                "61ff7d4f.f8c1b4"
+            ]
+        ]
+    },
+    {
+        "id": "cb9ebf47.e93768",
+        "type": "mqtt out",
+        "z": "ac6cf50f.41bcf",
+        "name": "",
+        "topic": "my/topic",
+        "qos": "",
+        "retain": "",
+        "broker": "a7f9efab.08a17",
+        "x": 592,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "61ff7d4f.f8c1b4",
+        "type": "debug",
+        "z": "ac6cf50f.41bcf",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 400,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "cbad2ca8.b4cad",
+        "type": "inject",
+        "z": "ac6cf50f.41bcf",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 192,
+        "y": 200,
+        "wires": [
+            [
+                "942bfb85.88fd88"
+            ]
+        ]
+    },
+    {
+        "id": "942bfb85.88fd88",
+        "type": "function",
+        "z": "ac6cf50f.41bcf",
+        "name": "",
+        "func": "msg.payload = \"NodeRED message!\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 392,
+        "y": 200,
+        "wires": [
+            [
+                "cb9ebf47.e93768"
+            ]
+        ]
+    },
+    {
+        "id": "b8e54f3d.d8b9d",
+        "type": "mqtt in",
+        "z": "ac6cf50f.41bcf",
+        "name": "AdminTLS_Read",
+        "topic": "#",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "c10b6c00.e81dc8",
+        "x": 200,
+        "y": 300,
+        "wires": [
+            [
+                "7d5332c7.202b14"
+            ]
+        ]
+    },
+    {
+        "id": "d6af19b1.234f6",
+        "type": "mqtt out",
+        "z": "ac6cf50f.41bcf",
+        "name": "",
+        "topic": "open/test",
+        "qos": "",
+        "retain": "",
+        "broker": "c10b6c00.e81dc8",
+        "x": 620,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "b3ba28bc.b8166",
+        "type": "debug",
+        "z": "ac6cf50f.41bcf",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 610,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "33ecbec1.40b29a",
+        "type": "inject",
+        "z": "ac6cf50f.41bcf",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 220,
+        "y": 560,
+        "wires": [
+            [
+                "5fd647e7.53f6e8"
+            ]
+        ]
+    },
+    {
+        "id": "5fd647e7.53f6e8",
+        "type": "function",
+        "z": "ac6cf50f.41bcf",
+        "name": "AdminWrite",
+        "func": "msg.payload = \"NodeRED message From ADMIN!\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 420,
+        "y": 560,
+        "wires": [
+            [
+                "d6af19b1.234f6",
+                "d27f3a11.8b5c48",
+                "b4460ecc.33c248"
+            ]
+        ]
+    },
+    {
+        "id": "98fb7962.b36548",
+        "type": "comment",
+        "z": "ac6cf50f.41bcf",
+        "name": "Encrypted + Authenticated (with ACL)",
+        "info": "",
+        "x": 180,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "e4497459.c2db9",
+        "type": "comment",
+        "z": "ac6cf50f.41bcf",
+        "name": "Authenticated",
+        "info": "",
+        "x": 101,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "7d5332c7.202b14",
+        "type": "function",
+        "z": "ac6cf50f.41bcf",
+        "name": "",
+        "func": "topic = msg.topic;\nmessage = msg.payload;\nmsg.payload = \"ADMIN read from [\" + topic + \"]: \" + message;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 400,
+        "y": 300,
+        "wires": [
+            [
+                "b3ba28bc.b8166"
+            ]
+        ]
+    },
+    {
+        "id": "952d791c.cda47",
+        "type": "mqtt in",
+        "z": "ac6cf50f.41bcf",
+        "name": "AnnaTLS_Read",
+        "topic": "#",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "9322dc09.434ec",
+        "x": 200,
+        "y": 360,
+        "wires": [
+            [
+                "499fcc8e.f756a4"
+            ]
+        ]
+    },
+    {
+        "id": "4a55e688.4c02f8",
+        "type": "debug",
+        "z": "ac6cf50f.41bcf",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 610,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "499fcc8e.f756a4",
+        "type": "function",
+        "z": "ac6cf50f.41bcf",
+        "name": "",
+        "func": "topic = msg.topic;\nmessage = msg.payload;\nmsg.payload = \"ANNA read from [\" + topic + \"]: \" + message;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 400,
+        "y": 360,
+        "wires": [
+            [
+                "4a55e688.4c02f8"
+            ]
+        ]
+    },
+    {
+        "id": "34f281cf.8eac46",
+        "type": "mqtt in",
+        "z": "ac6cf50f.41bcf",
+        "name": "RogerTLS_Read",
+        "topic": "#",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "cb6a5e0d.9d016",
+        "x": 200,
+        "y": 420,
+        "wires": [
+            [
+                "9d91659d.7587"
+            ]
+        ]
+    },
+    {
+        "id": "ba9a272a.9cf69",
+        "type": "debug",
+        "z": "ac6cf50f.41bcf",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 610,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "9d91659d.7587",
+        "type": "function",
+        "z": "ac6cf50f.41bcf",
+        "name": "",
+        "func": "topic = msg.topic;\nmessage = msg.payload;\nmsg.payload = \"ROGER read from [\" + topic + \"]: \" + message;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 400,
+        "y": 420,
+        "wires": [
+            [
+                "ba9a272a.9cf69"
+            ]
+        ]
+    },
+    {
+        "id": "8054ed67.547bc",
+        "type": "mqtt out",
+        "z": "ac6cf50f.41bcf",
+        "name": "",
+        "topic": "open/test",
+        "qos": "",
+        "retain": "",
+        "broker": "9322dc09.434ec",
+        "x": 620,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "8d07381d.bb586",
+        "type": "inject",
+        "z": "ac6cf50f.41bcf",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 220,
+        "y": 740,
+        "wires": [
+            [
+                "3ded976b.5cd62"
+            ]
+        ]
+    },
+    {
+        "id": "3ded976b.5cd62",
+        "type": "function",
+        "z": "ac6cf50f.41bcf",
+        "name": "AnnaWrite",
+        "func": "msg.payload = \"NodeRED message From ANNA!\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 430,
+        "y": 740,
+        "wires": [
+            [
+                "8054ed67.547bc",
+                "b340a8c1.da7108",
+                "138964bf.e81a4b"
+            ]
+        ]
+    },
+    {
+        "id": "d27f3a11.8b5c48",
+        "type": "mqtt out",
+        "z": "ac6cf50f.41bcf",
+        "name": "",
+        "topic": "private1/test",
+        "qos": "",
+        "retain": "",
+        "broker": "c10b6c00.e81dc8",
+        "x": 630,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "b4460ecc.33c248",
+        "type": "mqtt out",
+        "z": "ac6cf50f.41bcf",
+        "name": "",
+        "topic": "private2/test",
+        "qos": "",
+        "retain": "",
+        "broker": "c10b6c00.e81dc8",
+        "x": 630,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "b340a8c1.da7108",
+        "type": "mqtt out",
+        "z": "ac6cf50f.41bcf",
+        "name": "",
+        "topic": "private1/test",
+        "qos": "",
+        "retain": "",
+        "broker": "9322dc09.434ec",
+        "x": 630,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "138964bf.e81a4b",
+        "type": "mqtt out",
+        "z": "ac6cf50f.41bcf",
+        "name": "",
+        "topic": "private2/test",
+        "qos": "",
+        "retain": "",
+        "broker": "9322dc09.434ec",
+        "x": 630,
+        "y": 800,
+        "wires": []
+    },
+    {
+        "id": "4fe47ee9.3f4888",
+        "type": "mqtt out",
+        "z": "ac6cf50f.41bcf",
+        "name": "",
+        "topic": "open/test",
+        "qos": "",
+        "retain": "",
+        "broker": "cb6a5e0d.9d016",
+        "x": 620,
+        "y": 860,
+        "wires": []
+    },
+    {
+        "id": "6e3f76dc.81244",
+        "type": "inject",
+        "z": "ac6cf50f.41bcf",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 220,
+        "y": 920,
+        "wires": [
+            [
+                "8a65c389.fab37"
+            ]
+        ]
+    },
+    {
+        "id": "8a65c389.fab37",
+        "type": "function",
+        "z": "ac6cf50f.41bcf",
+        "name": "RogerWrite",
+        "func": "msg.payload = \"NodeRED message From ROGER!\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 430,
+        "y": 920,
+        "wires": [
+            [
+                "4fe47ee9.3f4888",
+                "8d4bb270.60588",
+                "44c8cf5f.1a2068"
+            ]
+        ]
+    },
+    {
+        "id": "8d4bb270.60588",
+        "type": "mqtt out",
+        "z": "ac6cf50f.41bcf",
+        "name": "",
+        "topic": "private1/test",
+        "qos": "",
+        "retain": "",
+        "broker": "cb6a5e0d.9d016",
+        "x": 630,
+        "y": 920,
+        "wires": []
+    },
+    {
+        "id": "44c8cf5f.1a2068",
+        "type": "mqtt out",
+        "z": "ac6cf50f.41bcf",
+        "name": "",
+        "topic": "private2/test",
+        "qos": "",
+        "retain": "",
+        "broker": "cb6a5e0d.9d016",
+        "x": 630,
+        "y": 980,
+        "wires": []
+    },
+    {
+        "id": "a7f9efab.08a17",
+        "type": "mqtt-broker",
+        "z": "",
+        "name": "AdminMosquitto-NO-TLS",
+        "broker": "192.168.1.109",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "compatmode": false,
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": ""
+    },
+    {
+        "id": "c10b6c00.e81dc8",
+        "type": "mqtt-broker",
+        "z": "",
+        "name": "AdminTSL_Conn",
+        "broker": "192.168.1.109",
+        "port": "8883",
+        "tls": "6de35e71.179528",
+        "clientid": "",
+        "usetls": true,
+        "compatmode": false,
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": ""
+    },
+    {
+        "id": "9322dc09.434ec",
+        "type": "mqtt-broker",
+        "z": "",
+        "name": "AnnaTLS_Conn",
+        "broker": "192.168.1.109",
+        "port": "8883",
+        "tls": "3725cf1f.93d438",
+        "clientid": "",
+        "usetls": true,
+        "compatmode": false,
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": ""
+    },
+    {
+        "id": "cb6a5e0d.9d016",
+        "type": "mqtt-broker",
+        "z": "",
+        "name": "RogerTLS_Conn",
+        "broker": "192.168.1.109",
+        "port": "8883",
+        "tls": "f5fa811d.f3d468",
+        "clientid": "",
+        "usetls": true,
+        "compatmode": false,
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": ""
+    },
+    {
+        "id": "6de35e71.179528",
+        "type": "tls-config",
+        "z": "",
+        "name": "AdminTSL",
+        "cert": "",
+        "key": "",
+        "ca": "",
+        "certname": "admin.crt",
+        "keyname": "admin.key",
+        "caname": "ca.crt",
+        "servername": "",
+        "verifyservercert": false
+    },
+    {
+        "id": "3725cf1f.93d438",
+        "type": "tls-config",
+        "z": "",
+        "name": "AnnaTLS",
+        "cert": "",
+        "key": "",
+        "ca": "",
+        "certname": "anna.crt",
+        "keyname": "anna.key",
+        "caname": "ca.crt",
+        "servername": "",
+        "verifyservercert": false
+    },
+    {
+        "id": "f5fa811d.f3d468",
+        "type": "tls-config",
+        "z": "",
+        "name": "RogerTLS",
+        "cert": "",
+        "key": "",
+        "ca": "",
+        "certname": "roger.crt",
+        "keyname": "roger.key",
+        "caname": "ca.crt",
+        "servername": "",
+        "verifyservercert": false
+    }
+]

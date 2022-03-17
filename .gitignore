@@ -9,3 +9,12 @@ cert/server.key
 client_cert/client.crt
 client_cert/client.csr
 client_cert/client.key
+client_cert/admin.crt
+client_cert/admin.csr
+client_cert/admin.key
+client_cert/anna.crt
+client_cert/anna.csr
+client_cert/anna.key
+client_cert/roger.crt
+client_cert/roger.csr
+client_cert/roger.key
